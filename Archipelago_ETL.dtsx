@@ -1,0 +1,1387 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/13/2018 12:55:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="XILP-IND-3173"
+  DTS:CreatorName="XIPL\nikhil.gupta1"
+  DTS:DTSID="{9BC317B8-BE2D-444E-A5E2-96CAB050D1B8}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Archipelago_ETL"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="212"
+  DTS:VersionGUID="{2C42095F-4F74-4D51-BD01-F30E193DCCF3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[XILP-IND-3173\SQLEXPRESS.framework_metadata]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+      DTS:ObjectName="XILP-IND-3173\SQLEXPRESS.framework_metadata">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::v_Source]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BHDP-TU104-137\SQLEXPRESS;Initial Catalog=FRAMEWORK_INT;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\Work\MetaDriven\Frameworks\Frameworks\ETL\Arch_Config.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{E0B022F1-57D6-4A31-B48D-770846E05E8B}"
+      DTS:ObjectName="Configuration 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5DD7BF0-E3DF-4F0D-9E6E-D4CF079DED71}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::v_ArchiveFolderPath] +  @[User::v_ArchiveFolderName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ArchiveDestination">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\Archive\0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0DF6076D-1822-4B41-9318-3F3A73F415A9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 10) @[User::v_BatchRunLogID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ArchiveFolderName">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6CE76A8-440D-4ED1-83D2-C37F27AAB30A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ArchiveFolderPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\Archive\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A5389A94-5415-4C54-947D-325AE2ED1B8E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_BatchFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\Log\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF9EEE98-E86A-4F86-B37B-D6B606468736}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_BatchID">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB8F1C11-CB94-4B34-9EF6-E56227E2A134}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_BatchOutput">
+      <DTS:VariableValue
+        DTS:DataType="8">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E1A46CF-9697-4310-9141-15FD7C183131}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_BatchRunLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{04297A44-18DC-47EF-B782-BF493EC99CA2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::v_BatchFilePath] + &quot;LogFile_&quot; +   (DT_WSTR, 10)  @[User::v_BatchRunLogID] + &quot;_&quot; +&#xA;(DT_WSTR, 10) @[User::v_Result_ProcessID] + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_LogFile">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\Log\LogFile_0_0.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BE135CD1-7F26-4EAE-A4DD-15A8A933D581}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ProcessIDs">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B3D56636-0763-4644-8C33-A08F3390BE90}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_RestartFlag">
+      <DTS:VariableValue
+        DTS:DataType="8">N</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B2B9DF4F-B266-44DC-B412-356C9E0940C5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ResultTaskID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{16920449-8A29-4CAA-A02E-AA59D2ED4C4C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ResultTaskType">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5636820F-08D7-41D9-923D-F50D192CA6C2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Result_ActionOnFailure">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{47ABBF19-23AD-4409-8894-E181E349FC5D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Result_ProcessID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09E871CF-116F-41ED-AE36-E7B2ED687959}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Result_STDTaskID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7A02524D-9105-4318-911C-959E47C83B5C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_RtnStat">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22387A08-1080-4525-A9F4-12732BB49D13}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Source">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=BHDP-TU104-137\SQLEXPRESS;Initial Catalog=FRAMEWORK_INT;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF1C2A6E-9ECB-441F-A64C-638CA5A3E99A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::v_SourceFolder] +  @[User::v_SourceFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_SourceFileFullPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\SrcFiles\Market</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E07EF955-FA56-4E01-9DA4-CFC925FFEDA5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_SourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Market</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2FB51E8E-ECBA-45C1-A38E-1C38E135BC71}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_SourceFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\SrcFiles\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23C8F5F5-2E91-427D-A962-7E3373AB097C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TaskCommand">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Work\MetaDriven\Frameworks\Frameworks\ShellScripts\exectask.bat</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BBCF7B38-FA9B-44B1-9C18-9C731955B5C6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TaskIDs">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{86BDE26C-C60F-44BD-9F7C-440F4A709B86}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Batch Execution"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{4C17E328-E0A4-47CA-A1DD-B763CE73B7D7}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Batch Execution">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process"
+              DTS:CreationName="STOCK:FOREACHLOOP"
+              DTS:Description="Foreach Loop Container"
+              DTS:DTSID="{9E245E9C-6F0C-4AF6-A4D5-5675DBBCB406}"
+              DTS:ExecutableType="STOCK:FOREACHLOOP"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Foreach Loop Container For Process">
+              <DTS:ForEachEnumerator
+                DTS:CreationName="Microsoft.ForEachADOEnumerator"
+                DTS:DTSID="{07CFEF98-8C0F-4357-9631-97016F68E4ED}"
+                DTS:ObjectName="{07CFEF98-8C0F-4357-9631-97016F68E4ED}">
+                <DTS:ObjectData>
+                  <FEEADO
+                    EnumType="EnumerateRowsInFirstTable"
+                    VarName="User::v_ProcessIDs" />
+                </DTS:ObjectData>
+              </DTS:ForEachEnumerator>
+              <DTS:Variables />
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks"
+                  DTS:CreationName="STOCK:FOREACHLOOP"
+                  DTS:Description="Foreach Loop Container"
+                  DTS:DTSID="{1E655AFC-AAC8-493A-A389-C2511A8D0194}"
+                  DTS:ExecutableType="STOCK:FOREACHLOOP"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Foreach Loop Container For Tasks">
+                  <DTS:ForEachEnumerator
+                    DTS:CreationName="Microsoft.ForEachADOEnumerator"
+                    DTS:DTSID="{69B70C22-C778-45C6-9480-03417101FDEA}"
+                    DTS:ObjectName="{69B70C22-C778-45C6-9480-03417101FDEA}">
+                    <DTS:ObjectData>
+                      <FEEADO
+                        EnumType="EnumerateRowsInFirstTable"
+                        VarName="User::v_TaskIDs" />
+                    </DTS:ObjectData>
+                  </DTS:ForEachEnumerator>
+                  <DTS:Variables />
+                  <DTS:Executables>
+                    <DTS:Executable
+                      DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Script Task"
+                      DTS:CreationName="Microsoft.ScriptTask"
+                      DTS:Description="Script Task"
+                      DTS:DTSID="{93053B55-2FE6-4929-BBCD-4F941F11E03D}"
+                      DTS:ExecutableType="Microsoft.ScriptTask"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Script Task"
+                      DTS:ThreadHint="0">
+                      <DTS:Variables />
+                      <DTS:ObjectData>
+                        <ScriptProject
+                          Name="ST_a39e36effb914cdc8337d8a6c2e571e7"
+                          VSTAMajorVersion="15"
+                          VSTAMinorVersion="0"
+                          Language="CSharp" />
+                      </DTS:ObjectData>
+                    </DTS:Executable>
+                    <DTS:Executable
+                      DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container"
+                      DTS:CreationName="STOCK:SEQUENCE"
+                      DTS:Description="Sequence Container"
+                      DTS:DTSID="{7D47CDD5-0313-4CBE-87ED-1E49BB2185EE}"
+                      DTS:ExecutableType="STOCK:SEQUENCE"
+                      DTS:LocaleID="-1"
+                      DTS:ObjectName="Sequence Container">
+                      <DTS:Variables />
+                      <DTS:Executables>
+                        <DTS:Executable
+                          DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Execute Process Task"
+                          DTS:CreationName="Microsoft.ExecuteProcess"
+                          DTS:Description="Execute Process Task"
+                          DTS:DTSID="{19DEB1A9-DE65-4993-B614-0EA06AB7A9BA}"
+                          DTS:ExecutableType="Microsoft.ExecuteProcess"
+                          DTS:LocaleID="-1"
+                          DTS:ObjectName="Execute Process Task"
+                          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                          DTS:ThreadHint="0">
+                          <DTS:Variables />
+                          <DTS:PropertyExpression
+                            DTS:Name="Arguments">(DT_WSTR, 10) @[User::v_BatchID] + " " + (DT_WSTR, 10)  @[User::v_Result_ProcessID] + " " +
+(DT_WSTR, 10) @[User::v_ResultTaskID] + " " + (DT_WSTR, 10) @[User::v_Result_STDTaskID] + " " +
+(DT_WSTR, 10)  @[User::v_BatchRunLogID] +" "+  (DT_WSTR, 100) @[User::v_LogFile]  +" "+
+ (DT_WSTR, 10)  @[User::v_ResultTaskType] + " " + (DT_WSTR, 10)  @[User::v_Result_ActionOnFailure] + " " + (DT_WSTR, 60) @[User::v_BatchOutput]</DTS:PropertyExpression>
+                          <DTS:PropertyExpression
+                            DTS:Name="Executable">@[User::v_TaskCommand]</DTS:PropertyExpression>
+                          <DTS:ObjectData>
+                            <ExecuteProcessData
+                              Executable="C:\Work\MetaDriven\Frameworks\Frameworks\ShellScripts\exectask.bat"
+                              Arguments="1 0 0 0 0 C:\Work\MetaDriven\Frameworks\Frameworks\Log\LogFile_0_0.txt   -1" />
+                          </DTS:ObjectData>
+                        </DTS:Executable>
+                        <DTS:Executable
+                          DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Update Task Status to EXECUTING"
+                          DTS:CreationName="Microsoft.ExecuteSQLTask"
+                          DTS:Description="Execute SQL Task"
+                          DTS:DTSID="{2DEF8F1B-FC1A-4BFC-ACDF-7343916C1F0C}"
+                          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                          DTS:LocaleID="-1"
+                          DTS:ObjectName="Update Task Status to EXECUTING"
+                          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                          DTS:ThreadHint="0">
+                          <DTS:Variables />
+                          <DTS:ObjectData>
+                            <SQLTask:SqlTaskData
+                              SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                              SQLTask:SqlStatementSource="Declare @RtnStat int = ?&#xA;&#xA;Exec USP_UPD_TASK_RUN_STATUS ?,?,?,?,'Executing',@RtnStat OUTPUT;&#xA;&#xA;select @RtnStat"
+                              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                              <SQLTask:ResultBinding
+                                SQLTask:ResultName="0"
+                                SQLTask:DtsVariableName="User::v_RtnStat" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="1"
+                                SQLTask:DtsVariableName="User::v_BatchID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="2"
+                                SQLTask:DtsVariableName="User::v_Result_ProcessID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="3"
+                                SQLTask:DtsVariableName="User::v_ResultTaskID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="4"
+                                SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="0"
+                                SQLTask:DtsVariableName="User::v_RtnStat"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                            </SQLTask:SqlTaskData>
+                          </DTS:ObjectData>
+                        </DTS:Executable>
+                        <DTS:Executable
+                          DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Update Task Status to SUCCESS"
+                          DTS:CreationName="Microsoft.ExecuteSQLTask"
+                          DTS:Description="Execute SQL Task"
+                          DTS:Disabled="True"
+                          DTS:DTSID="{AA57E04B-E4D6-4EDF-9B64-213D52F1ECC5}"
+                          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                          DTS:LocaleID="-1"
+                          DTS:ObjectName="Update Task Status to SUCCESS"
+                          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                          DTS:ThreadHint="0">
+                          <DTS:Variables />
+                          <DTS:ObjectData>
+                            <SQLTask:SqlTaskData
+                              SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                              SQLTask:SqlStatementSource="Exec USP_UPD_TASK_RUN_STATUS ?,?,?,?,'Success',0&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="0"
+                                SQLTask:DtsVariableName="User::v_BatchID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="1"
+                                SQLTask:DtsVariableName="User::v_Result_ProcessID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="2"
+                                SQLTask:DtsVariableName="User::v_ResultTaskID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                              <SQLTask:ParameterBinding
+                                SQLTask:ParameterName="3"
+                                SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                                SQLTask:ParameterDirection="Input"
+                                SQLTask:DataType="131"
+                                SQLTask:ParameterSize="-1" />
+                            </SQLTask:SqlTaskData>
+                          </DTS:ObjectData>
+                        </DTS:Executable>
+                      </DTS:Executables>
+                      <DTS:PrecedenceConstraints>
+                        <DTS:PrecedenceConstraint
+                          DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container.PrecedenceConstraints[Constraint]"
+                          DTS:CreationName=""
+                          DTS:DTSID="{9E60970D-0E03-4343-9C33-A6055271428D}"
+                          DTS:EvalOp="1"
+                          DTS:Expression="@[User::v_RtnStat] != -1"
+                          DTS:From="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Update Task Status to EXECUTING"
+                          DTS:LogicalAnd="True"
+                          DTS:ObjectName="Constraint"
+                          DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Execute Process Task" />
+                        <DTS:PrecedenceConstraint
+                          DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container.PrecedenceConstraints[Constraint 2]"
+                          DTS:CreationName=""
+                          DTS:DTSID="{7575F652-A089-416C-9AE3-2FA5B721BFF0}"
+                          DTS:From="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Execute Process Task"
+                          DTS:LogicalAnd="True"
+                          DTS:ObjectName="Constraint 2"
+                          DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Update Task Status to SUCCESS" />
+                      </DTS:PrecedenceConstraints>
+                    </DTS:Executable>
+                  </DTS:Executables>
+                  <DTS:PrecedenceConstraints>
+                    <DTS:PrecedenceConstraint
+                      DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks.PrecedenceConstraints[Constraint]"
+                      DTS:CreationName=""
+                      DTS:DTSID="{F98431D2-31A0-468E-9CFA-13B26CA7570B}"
+                      DTS:EvalOp="1"
+                      DTS:Expression="@[User::v_RtnStat] != -1"
+                      DTS:From="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Script Task"
+                      DTS:LogicalAnd="True"
+                      DTS:ObjectName="Constraint"
+                      DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container" />
+                  </DTS:PrecedenceConstraints>
+                  <DTS:ForEachVariableMappings>
+                    <DTS:ForEachVariableMapping
+                      DTS:CreationName=""
+                      DTS:DTSID="{A2A0ABDE-BD8E-4218-A7C1-608773134D72}"
+                      DTS:ObjectName="{A2A0ABDE-BD8E-4218-A7C1-608773134D72}"
+                      DTS:ValueIndex="0"
+                      DTS:VariableName="User::v_ResultTaskID" />
+                    <DTS:ForEachVariableMapping
+                      DTS:CreationName=""
+                      DTS:DTSID="{F0FEEA32-FE4C-43B6-A20B-CD1FD9B8DF0F}"
+                      DTS:ObjectName="{F0FEEA32-FE4C-43B6-A20B-CD1FD9B8DF0F}"
+                      DTS:ValueIndex="1"
+                      DTS:VariableName="User::v_ResultTaskType" />
+                    <DTS:ForEachVariableMapping
+                      DTS:CreationName=""
+                      DTS:DTSID="{AC5E16FB-66A2-4A4F-B61B-5CE6C0E6CD77}"
+                      DTS:ObjectName="{AC5E16FB-66A2-4A4F-B61B-5CE6C0E6CD77}"
+                      DTS:ValueIndex="2"
+                      DTS:VariableName="User::v_Result_STDTaskID" />
+                    <DTS:ForEachVariableMapping
+                      DTS:CreationName=""
+                      DTS:DTSID="{C598962A-D3FC-4636-B926-E1FA81F6A431}"
+                      DTS:ObjectName="{C598962A-D3FC-4636-B926-E1FA81F6A431}"
+                      DTS:ValueIndex="3"
+                      DTS:VariableName="User::v_Result_ActionOnFailure" />
+                  </DTS:ForEachVariableMappings>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Get All Task Ids For Current Process"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{14E0ACFC-9B83-4981-820A-D1A044C73F2E}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Get All Task Ids For Current Process"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                      SQLTask:SqlStatementSource="select T.TASK_ID,T.TASK_TYPE,ISNULL(ST.STD_TASK_ID,-1) AS STD_TASK_ID,T.TASK_ACTION_ON_FAILURE&#xA;from TASK T &#xA;INNER JOIN TASK_RUN_LOG TL ON TL.TASK_ID = T.TASK_ID AND BATCH_RUN_LOG_ID = ?&#xA;LEFT JOIN TASK_TO_STD_TASK TST ON TST.TASK_ID = T.TASK_ID&#xA;LEFT JOIN STD_TASK ST ON ST.STD_TASK_ID = TST.STD_TASK_ID&#xA;Where TL.PROCESS_ID = ? AND TL.BATCH_ID = ?&#xA;Order by T.TASK_EXEC_SEQ "
+                      SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="0"
+                        SQLTask:DtsVariableName="User::v_TaskIDs" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::v_Result_ProcessID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="2"
+                        SQLTask:DtsVariableName="User::v_BatchID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Update Process Status to EXECUTING"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{9CCE1455-466C-438F-8666-1D0D1E84CDD3}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Update Process Status to EXECUTING"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                      SQLTask:SqlStatementSource="Declare @RtnStat int = ?&#xA;&#xA;Exec USP_UPD_PROCESS_RUN_STATUS ?,?,?,'Executing',@RtnStat OUTPUT;&#xA;&#xA;select @RtnStat&#xA;&#xA;&#xA;"
+                      SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="0"
+                        SQLTask:DtsVariableName="User::v_RtnStat" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::v_BatchID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="2"
+                        SQLTask:DtsVariableName="User::v_Result_ProcessID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="3"
+                        SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::v_RtnStat"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Update Process Status to SUCCESS"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{09EED645-52FE-4776-A11A-F2B189CFE8B4}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Update Process Status to SUCCESS"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                      SQLTask:SqlStatementSource="declare @RtnStat int = ?&#xA;&#xA;&#xA;Exec USP_UPD_PROCESS_RUN_SUCCESS ?,?,?,@RtnStat OUTPUT;&#xA;Select @RtnStat&#xA;"
+                      SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="0"
+                        SQLTask:DtsVariableName="User::v_RtnStat" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::v_BatchID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="2"
+                        SQLTask:DtsVariableName="User::v_Result_ProcessID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="3"
+                        SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::v_RtnStat"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="131"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+              <DTS:PrecedenceConstraints>
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process.PrecedenceConstraints[Constraint]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{A2BAF2A5-3048-4DA2-8A55-062B1AEC9B9C}"
+                  DTS:EvalOp="1"
+                  DTS:Expression="@[User::v_RtnStat] != -1"
+                  DTS:From="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Update Process Status to EXECUTING"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint"
+                  DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Get All Task Ids For Current Process" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process.PrecedenceConstraints[Constraint 1]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{0EE70255-1935-4095-BA78-D72D940AC523}"
+                  DTS:From="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Get All Task Ids For Current Process"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 1"
+                  DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process.PrecedenceConstraints[Constraint 2]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{6A309B3A-58D4-49A4-A8EA-1E2D4E0265E1}"
+                  DTS:From="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 2"
+                  DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Update Process Status to SUCCESS" />
+              </DTS:PrecedenceConstraints>
+              <DTS:ForEachVariableMappings>
+                <DTS:ForEachVariableMapping
+                  DTS:CreationName=""
+                  DTS:DTSID="{F7D63221-C527-41EB-A193-568FEF90100F}"
+                  DTS:ObjectName="{F7D63221-C527-41EB-A193-568FEF90100F}"
+                  DTS:ValueIndex="0"
+                  DTS:VariableName="User::v_Result_ProcessID" />
+              </DTS:ForEachVariableMappings>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Batch Execution\Get All Process Ids"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{454C88E5-ABA1-40C3-A2BA-B45B46C7543D}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Get All Process Ids"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                  SQLTask:SqlStatementSource="select PL.PROCESS_ID &#xA;from PROCESS_RUN_LOG PL&#xA;inner join PROCESS P ON P.BATCH_ID = PL.BATCH_ID AND P.PROCESS_ID = PL.PROCESS_ID&#xA;where BATCH_RUN_LOG_ID = ? and PL.BATCH_ID = ?&#xA;order by P.EXEC_SEQ &#xA;&#xA;"
+                  SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::v_ProcessIDs" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::v_BatchID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Batch Execution\Initialise Batch Run"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{FB6C29FA-CD44-4B43-8AB6-3CB57E152400}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Initialise Batch Run"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                  SQLTask:SqlStatementSource="declare @BatchRunLogID int = ?&#xA;&#xA;EXEC USP_INIT_BATCHRUN ?,?,@BatchRunLogID OUTPUT;&#xA;Select @BatchRunLogID"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::v_BatchRunLogID" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::v_BatchID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::v_RestartFlag"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Batch Execution\Update Batch Status to EXECUTING"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{88853240-12D5-4CAF-BB12-8CA63BE3DC35}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Update Batch Status to EXECUTING"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+                  SQLTask:SqlStatementSource="declare @RtnStat int = ?&#xA;&#xA;&#xA;Exec USP_UPD_BATCH_RUN_STATUS ?,?,'Executing',@RtnStat OUTPUT;&#xA;Select @RtnStat&#xA;"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::v_RtnStat" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::v_BatchID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::v_RtnStat"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="131"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Batch Execution.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{B5915677-624E-44F7-AD1D-6DAE66874CA1}"
+              DTS:EvalOp="1"
+              DTS:Expression="@[User::v_BatchRunLogID] != -1"
+              DTS:From="Package\Sequence Container\Batch Execution\Initialise Batch Run"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Sequence Container\Batch Execution\Get All Process Ids" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Batch Execution.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{82641440-DA23-4756-9A6E-6E0F96122090}"
+              DTS:From="Package\Sequence Container\Batch Execution\Get All Process Ids"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Sequence Container\Batch Execution\Update Batch Status to EXECUTING" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Batch Execution.PrecedenceConstraints[Constraint 2]"
+              DTS:CreationName=""
+              DTS:DTSID="{DA8B6113-1E95-44FF-90CE-8E7572A3850B}"
+              DTS:EvalOp="1"
+              DTS:Expression="@[User::v_RtnStat] != -1"
+              DTS:From="Package\Sequence Container\Batch Execution\Update Batch Status to EXECUTING"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2"
+              DTS:To="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Create Folder"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{E44BBEF8-0772-4BC8-BF90-8818A1896B71}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Folder"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="CreateDirectory"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::v_ArchiveDestination"
+              TaskIsSourceVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Foreach Loop Container"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{90A32D44-5A4C-48DA-A8B0-11BB9DC7CD71}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Foreach Loop Container">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachFileEnumerator"
+            DTS:DTSID="{C759C79E-2E3D-4EBC-943E-C6E0C3A818EE}"
+            DTS:ObjectName="{36A3262D-2AFD-4873-A215-E82C77BBC48D}">
+            <DTS:PropertyExpression
+              DTS:Name="Directory">@[User::v_SourceFolder]</DTS:PropertyExpression>
+            <DTS:ObjectData>
+              <ForEachFileEnumeratorProperties>
+                <FEFEProperty
+                  Folder="C:\Work\MetaDriven\Frameworks\Frameworks\SrcFiles\" />
+                <FEFEProperty
+                  FileSpec="*.csv*" />
+                <FEFEProperty
+                  FileNameRetrievalType="1" />
+                <FEFEProperty
+                  Recurse="0" />
+              </ForEachFileEnumeratorProperties>
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Foreach Loop Container\Move Source file to Created folder"
+              DTS:CreationName="Microsoft.FileSystemTask"
+              DTS:Description="File System Task"
+              DTS:DTSID="{8849C88E-1AA0-48C6-B702-6603E84F6BFE}"
+              DTS:ExecutableType="Microsoft.FileSystemTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Move Source file to Created folder"
+              DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <FileSystemData
+                  TaskOperationType="MoveFile"
+                  TaskSourcePath="User::v_SourceFileFullPath"
+                  TaskIsSourceVariable="True"
+                  TaskDestinationPath="User::v_ArchiveDestination"
+                  TaskIsDestinationVariable="True" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{E14F74A0-E17C-4975-AAA9-84CFB610F4A8}"
+              DTS:ObjectName="{CC5161E7-6738-4112-B37C-F028B154D3FE}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::v_SourceFileName" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Update Batch Status to Success"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{41945696-9BB7-4010-B1D8-A0344DF5BAE2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Batch Status to Success"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{46DAA59E-7296-4470-B296-51BC0A5914C9}"
+              SQLTask:SqlStatementSource="declare @RtnStat int = ?&#xA;&#xA;&#xA;Exec USP_UPD_BATCH_RUN_SUCCESS ?,?,@RtnStat OUTPUT;&#xA;Select @RtnStat&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_RtnStat" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::v_BatchRunLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_RtnStat"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8638D142-65C5-4C3F-9E8B-1F6047AB7912}"
+          DTS:From="Package\Sequence Container\Batch Execution"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Create Folder" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{13B733BE-9ECE-4BF0-A4C3-BF45015785ED}"
+          DTS:From="Package\Sequence Container\Create Folder"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Foreach Loop Container" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{61757006-512C-4BB0-8564-9EE9E810CEF9}"
+          DTS:From="Package\Sequence Container\Foreach Loop Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Sequence Container\Update Batch Status to Success" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Script Task"
+          TopLeft="101.75,5.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Execute Process Task"
+          TopLeft="39.5000000000001,155" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Update Task Status to EXECUTING"
+          TopLeft="11.5,27.0000000000001" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container\Update Task Status to SUCCESS"
+          TopLeft="19.5000000000001,253" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="131.25,69.0000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85.9999999999999"
+              Start="0,0"
+              End="0,78.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,31.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="132.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="296,356"
+          Size="296,399"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks\Sequence Container"
+          TopLeft="25.9999999999999,82" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks.PrecedenceConstraints[Constraint]"
+          TopLeft="171.125,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.5"
+              Start="0,0"
+              End="0,27">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,5.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="348,556"
+          Size="348,599"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Foreach Loop Container For Tasks"
+          TopLeft="65,164" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Get All Task Ids For Current Process"
+          TopLeft="116.5,99" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Update Process Status to EXECUTING"
+          TopLeft="117,24" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process\Update Process Status to SUCCESS"
+          TopLeft="118.75,803.25" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process.PrecedenceConstraints[Constraint]"
+          TopLeft="243.5,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,4.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process.PrecedenceConstraints[Constraint 1]"
+          TopLeft="240,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process.PrecedenceConstraints[Constraint 2]"
+          TopLeft="240.375,763">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.25"
+              Start="0,0"
+              End="0,32.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="490,898"
+          Size="490,941"
+          Id="Package\Sequence Container\Batch Execution\Foreach Loop Container For Process"
+          TopLeft="149.333333333333,269" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Sequence Container\Batch Execution\Get All Process Ids"
+          TopLeft="305.333333333333,105" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Sequence Container\Batch Execution\Initialise Batch Run"
+          TopLeft="302.333333333333,26" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Sequence Container\Batch Execution\Update Batch Status to EXECUTING"
+          TopLeft="264.424242424242,182.818181818182" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution.PrecedenceConstraints[Constraint]"
+          TopLeft="389.083333333333,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,6.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution.PrecedenceConstraints[Constraint 1]"
+          TopLeft="389.378787878788,147">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.8181818181816"
+              Start="0,0"
+              End="0,28.3181818181816">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.3181818181816" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Batch Execution.PrecedenceConstraints[Constraint 2]"
+          TopLeft="391.628787878788,224.818181818182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.181818181818"
+              Start="0,0"
+              End="0,36.681818181818">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.681818181818" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,10.340909090909,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="778,1262"
+          Size="778,1305"
+          Id="Package\Sequence Container\Batch Execution"
+          TopLeft="267,53" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Sequence Container\Create Folder"
+          TopLeft="583.750000000001,1410.36111111111" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Sequence Container\Foreach Loop Container\Move Source file to Created folder"
+          TopLeft="25,24" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="297,123"
+          Size="297,166"
+          Id="Package\Sequence Container\Foreach Loop Container"
+          TopLeft="508.75,1495.13888888889" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Sequence Container\Update Batch Status to Success"
+          TopLeft="536.606060606061,1722.33080808081" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="655.875,1358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.3611111111099"
+              Start="0,0"
+              End="0,44.8611111111099">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.8611111111099" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="656.5,1452.36111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.7777777777771"
+              Start="0,0"
+              End="0,35.2777777777771">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.2777777777771" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="654.42803030303,1661.13888888889">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.1919191919199"
+              Start="0,0"
+              End="0,53.6919191919199">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.6919191919199" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="1331,1840"
+          Size="1331,1883"
+          Id="Package\Sequence Container"
+          TopLeft="153.5,5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
